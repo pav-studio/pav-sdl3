@@ -1,6 +1,58 @@
-# 🏓 Ping Pong (SDL3 + CMake)
+# 🏓 Rogue Pong
 
-A simple cross-platform Ping Pong project built using **C++**, **SDL3**, and **CMake**.
+A roguelike twist on Pong where every run evolves through modifiers, cards, and chaotic mechanics.
+
+Built using **C++**, **SDL3**, and **CMake**.
+
+---
+
+# 📑 Index
+
+* [🎮 Concept](#-concept)
+* [🔥 Goal](#-goal)
+* [🚀 Features](#-features)
+* [⚙️ Setup & Installation](#️-setup--installation)
+
+  * [🐧 Linux Setup](#-linux-recommended--simple)
+  * [🪟 Windows Setup](#-windows-using-msys2--mingw)
+* [🧠 Notes](#-notes)
+* [📁 Project Structure](#-project-structure)
+* [🚫 .gitignore](#-gitignore-important)
+
+---
+
+## 🎮 Concept
+
+Rogue Pong transforms classic Pong into a **run-based progression game**.
+
+Each match changes gameplay through:
+
+* 🃏 Modifiers (cards / effects)
+* ⚡ Dynamic physics changes
+* 🎯 Increasing difficulty
+
+---
+
+### 🔁 Core Gameplay Loop
+
+```text
+Play Match → Earn Reward → Choose Modifier → Game Evolves → Repeat
+```
+
+---
+
+### 🧠 Gameplay Ideas
+
+* Ball speed, size, and behavior can change mid-run
+* Paddle abilities evolve (wider, faster, special effects)
+* Multi-ball, curve shots, or chaotic physics
+* Risk vs reward modifiers
+
+---
+
+## 🔥 Goal
+
+Survive increasingly difficult rallies while building a powerful (or unstable) setup.
 
 ---
 
@@ -15,6 +67,8 @@ A simple cross-platform Ping Pong project built using **C++**, **SDL3**, and **C
 # ⚙️ Setup & Installation
 
 ## 🐧 Linux (Recommended / Simple)
+
+👉 Jump back: [Index](#-index)
 
 Linux already provides everything needed.
 
@@ -49,17 +103,17 @@ cmake --build build
 
 ## 🪟 Windows (Using MSYS2 + MinGW)
 
+👉 Jump back: [Index](#-index)
+
 Windows requires a Unix-like environment to match Linux workflow.
 
 ### 1. Install MSYS2
 
-Download and install **MSYS2**.
+Download and install **MSYS2**
 
 ---
 
 ### 2. Open terminal
-
-Use:
 
 ```text
 MSYS2 MinGW64
@@ -108,24 +162,26 @@ cp /mingw64/bin/SDL3.dll build/
 
 ---
 
-# 🧠 Notes
+## 🧠 Notes
 
-* The project uses:
+👉 Jump back: [Index](#-index)
+
+The project uses:
 
 ```cmake
 find_package(SDL3 REQUIRED)
 ```
 
-* This allows automatic detection of SDL3 on both:
+This allows automatic detection of SDL3 on both:
 
-  * Linux (`apt`)
-  * Windows (`MSYS2`)
+* Linux (`apt`)
+* Windows (`MSYS2`)
 
-* No changes to `CMakeLists.txt` are required.
+No changes to `CMakeLists.txt` are required.
 
 ---
 
-# 📁 Project Structure
+## 📁 Project Structure
 
 ```text
 ping-pong/
@@ -137,14 +193,10 @@ ping-pong/
 
 ---
 
-# 🚫 .gitignore (important)
-
-Make sure to ignore build artifacts:
+## 🚫 .gitignore (important)
 
 ```text
 build/
 *.exe
 *.dll
 ```
-
-
