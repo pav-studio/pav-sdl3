@@ -7,14 +7,23 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 find_package(SDL3 REQUIRED)
 find_package(sdl3_image REQUIRED)
+find_package(SDL3_ttf REQUIRED)
+
 
 add_executable(RoguePong src/main.cpp
-    src/lib/asset_manager/asset_manager.cpp)
+    src/lib/asset_manager/asset_manager.cpp
+    src/screens/game_screen.h
+    src/lib/font/font.cpp
+    src/lib/font_manager/font_manager.h
+    src/lib/font_manager/font_manager.cpp
+    src/lib/sprite/sprite.h)
 
 target_link_libraries(RoguePong
     PRIVATE
     SDL3::SDL3
     SDL3_image::SDL3_image
+    SDL3_ttf::SDL3_ttf
+
 )
 
 add_custom_target(copy_assets ALL
@@ -32,6 +41,12 @@ add_custom_command(TARGET RoguePong POST_BUILD
 add_custom_command(TARGET RoguePong POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_if_different
         "C:/msys64/mingw64/bin/SDL3_image.dll"
+        $<TARGET_FILE_DIR:RoguePong>
+)
+
+add_custom_command(TARGET RoguePong POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        "C:/msys64/mingw64/bin/SDL3_ttf.dll"
         $<TARGET_FILE_DIR:RoguePong>
 )
 
