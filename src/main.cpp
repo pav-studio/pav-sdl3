@@ -26,7 +26,10 @@ int main() {
         while (SDL_PollEvent(&e)) {
             if (e.type == SDL_EVENT_QUIT)
                 running = false;
+                
+            manager.handleEvent(e);
         }
+        
 
         Uint64 now = SDL_GetTicks();
         float dt = (now - last) / 1000.0f;

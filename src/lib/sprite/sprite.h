@@ -39,7 +39,7 @@ public:
         timer += dt;
 
         if (timer >= frameTime) {
-            timer = 0;
+            timer -= frameTime;
             currentFrame = (currentFrame + 1) % frames.size();
         }
     }
