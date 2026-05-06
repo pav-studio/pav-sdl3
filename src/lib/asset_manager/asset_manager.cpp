@@ -65,6 +65,7 @@ std::vector<TextureRegion>& AssetManager::getRegions(const std::string& name) {
 }
 
 void AssetManager::clear() {
+    regions.clear();
     for (auto& pair : textures) {
         SDL_DestroyTexture(pair.second);
     }

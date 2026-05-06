@@ -55,6 +55,7 @@ int main() {
     }
 
     assets.clear();
+    
     TTF_Quit();
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
