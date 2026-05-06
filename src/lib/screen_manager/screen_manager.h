@@ -16,8 +16,8 @@ public:
         if (current) current->update(dt);
     }
 
-    void render(SDL_Renderer* renderer) {
-        if (current) current->render(renderer);
+    void render() {
+        if (current) current->render();
     }
 
     void handleEvent(const SDL_Event& e) {

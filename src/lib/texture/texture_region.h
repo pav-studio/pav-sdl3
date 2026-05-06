@@ -1,15 +1,37 @@
 #pragma once
 
-#include <SDL3/SDL.h>
+#include <glad/glad.h>
 
 struct TextureRegion {
-    SDL_Texture* texture;
-    SDL_FRect src;  
-    SDL_FRect dst;  
 
-    TextureRegion(SDL_Texture* tex, float x, float y, float w, float h)
-        : texture(tex) {
-        src = {x, y, w, h};
-        dst = {0, 0, w, h};
+    GLuint textureID = 0;
+
+    float x = 0;
+    float y = 0;
+
+    float w = 0;
+    float h = 0;
+
+    float textureWidth = 1;
+    float textureHeight = 1;
+
+    TextureRegion() = default;
+
+    TextureRegion(
+        GLuint tex,
+        float px,
+        float py,
+        float pw,
+        float ph,
+        float texW,
+        float texH
+    )
+        : textureID(tex),
+          x(px),
+          y(py),
+          w(pw),
+          h(ph),
+          textureWidth(texW),
+          textureHeight(texH) {
     }
 };
