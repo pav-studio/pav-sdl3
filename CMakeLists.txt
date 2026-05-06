@@ -8,7 +8,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 find_package(SDL3 REQUIRED)
 find_package(sdl3_image REQUIRED)
 find_package(SDL3_ttf REQUIRED)
-
+find_package(OpenGL REQUIRED)
 
 add_executable(RoguePong src/main.cpp
     src/lib/asset_manager/asset_manager.cpp
@@ -17,14 +17,17 @@ add_executable(RoguePong src/main.cpp
     src/lib/font_manager/font_manager.h
     src/lib/font_manager/font_manager.cpp
     src/lib/sprite/sprite.h
-    src/lib/camera/camera.h)
+    src/lib/camera/camera.h
+    src/glad.c
+    src/lib/renderer/renderer2d.h
+    src/lib/renderer/renderer2d.cpp)
 
 target_link_libraries(RoguePong
     PRIVATE
     SDL3::SDL3
     SDL3_image::SDL3_image
     SDL3_ttf::SDL3_ttf
-
+    OpenGL::GL
 )
 
 add_custom_target(copy_assets ALL
@@ -52,6 +55,7 @@ add_custom_command(TARGET RoguePong POST_BUILD
 )
 
 include_directories(src)
+include_directories(src/include)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 

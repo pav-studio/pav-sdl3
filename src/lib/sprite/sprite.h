@@ -1,62 +1,90 @@
 #pragma once
-#include <vector>
+
 #include "lib/texture/texture_region.h"
 #include "lib/rect/rect.h"
+#include "lib/renderer/renderer2d.h"
 
 class Sprite {
-private:
-    std::vector<TextureRegion> frames;
 
-    int currentFrame = 0;
-    float frameTime = 0.1f; 
-    float timer = 0.0f;
+private:
+
+    TextureRegion texture;
 
 public:
+
+    float x = 0;
+    float y = 0;
+
+    float width = 0;
+    float height = 0;
+
+    float originX = 0;
+    float originY = 0;
+
+    float scaleX = 1.0f;
+    float scaleY = 1.0f;
+
+    float opacity = 1.0f;
+
+    float rotation = 0.0f;
+
+    bool flipX = false;
+    bool flipY = false;
+
+    bool visible = true;
+
     Rect bounds;
 
     Sprite() = default;
 
-    void setFrames(const std::vector<TextureRegion>& f) {
-        frames = f;
-        if (!frames.empty()) {
-            bounds.w = frames[0].dst.w;
-            bounds.h = frames[0].dst.h;
-        }
+    void setTexture(
+        const TextureRegion& region
+    ) {
+
+        texture = region;
+
+        width = region.w;
+        height = region.h;
+
+        bounds.w = width;
+        bounds.h = height;
     }
 
-    void setPosition(float x, float y) {
+    void update(float dt) {
+
+        bounds.x = x;
+        bounds.y = y;
+
+        bounds.w = width * scaleX;
+        bounds.h = height * scaleY;
+    }
+
+    void setPosition(
+        float px,
+        float py
+    ) {
+
+        x = px;
+        y = py;
+
         bounds.x = x;
         bounds.y = y;
     }
 
-    void setFrameTime(float t) {
-        frameTime = t;
-    }
+    void draw() {
 
-    void update(float dt) {
-        if (frames.empty()) return;
+        if (!visible)
+            return;
 
-        timer += dt;
+        Renderer2D::draw(
+            texture,
 
-        if (timer >= frameTime) {
-            timer -= frameTime;
-            currentFrame = (currentFrame + 1) % frames.size();
-        }
-    }
+            x,
+            y,
 
-    void draw(SDL_Renderer* renderer) {
-        if (frames.empty()) return;
-
-        auto& frame = frames[currentFrame];
-
-        SDL_FRect dst = {
-            bounds.x,
-            bounds.y,
-            bounds.w,
-            bounds.h
-        };
-
-        SDL_RenderTexture(renderer, frame.texture, &frame.src, &dst);
+            width * scaleX,
+            height * scaleY
+        );
     }
 
     Rect getBounds() const {
