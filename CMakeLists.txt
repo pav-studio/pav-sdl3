@@ -16,7 +16,8 @@ add_executable(RoguePong src/main.cpp
     src/lib/font/font.cpp
     src/lib/font_manager/font_manager.h
     src/lib/font_manager/font_manager.cpp
-    src/lib/sprite/sprite.h)
+    src/lib/sprite/sprite.h
+    src/lib/camera/camera.h)
 
 target_link_libraries(RoguePong
     PRIVATE

@@ -22,6 +22,7 @@ void AssetManager::loadTexture(SDL_Renderer* renderer,
         std::cout << "Failed to create texture: " << path << "\n";
         return;
     }
+    SDL_SetTextureScaleMode(texture, SDL_SCALEMODE_NEAREST);
 
     textures[name] = texture;
 }

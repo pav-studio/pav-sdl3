@@ -1,6 +1,6 @@
-# 🏓 Rogue Pong
+# 🏓 Pav SDL3
 
-A roguelike twist on Pong where every run evolves through modifiers, cards, and chaotic mechanics.
+A lightweight 2D game framework built on top of SDL3. Inspired by libGDX-style architecture and designed for rapid cross-platform game development in modern C++.
 
 Built using **C++**, **SDL3**, and **CMake**.
 

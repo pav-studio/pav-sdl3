@@ -89,16 +89,17 @@ public:
     void render(SDL_Renderer* renderer) override {
         if (!tiles || tiles->empty()) return;
 
-        auto& t = (*tiles)[0];
+        auto& t = (*tiles)[4];
 
         SDL_FRect dst = t.dst;
-        dst.x = 200;
-        dst.y = 200;
+        dst.x = 0;
+        dst.y = 0;
+        dst.w = 1280/2;
+        dst.h = 720/2;
 
-        // SDL_RenderTexture(renderer, t.texture, &t.src, &dst);
-        // fonts.draw(renderer, "default", "Hello SDL3", 100, 100);
+        SDL_RenderTexture(renderer, t.texture, &t.src, &dst);
+        
         player.draw(renderer);
         trigger.draw(renderer);
-
     }
 };
